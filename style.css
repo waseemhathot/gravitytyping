@@ -1,0 +1,230 @@
+:root{
+    --background-color: #15DB95;
+    /* #25274D; */
+    /* #e0474c; */
+    /* #10E7DC; */
+    --font-color: #15DB95; 
+    /* #25274D; */
+    /* #e0474c; */
+    /* #EE4C7C; */
+    /* #F76C6C; */
+}
+
+html{
+    background-color: var(--background-color);
+    /* width: 100%;
+    height: 110%; */
+    overflow-x: hidden;    
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.main-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-content__game-control{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    background-color: white;
+    font-size: 1.2em;
+    border: 0.1em solid black;
+    height: 10em;
+    margin-right: 2em;
+}
+
+.game-control__select{
+    padding: 0.5em;
+    font-size: 1em;
+    margin: 0.3em;
+    border: 0.1em solid black;
+    margin-right: auto;
+}
+
+.main-content__game-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.game-content__game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-content__ranks{
+    background-color: white;
+    width: 15em;
+    font-size: 1.2em;
+    margin-left: 2em;
+    border: 0.1em solid black;
+    padding: 1em;
+}
+
+.ranks__player-name-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-name-input__input{
+    outline: none;
+    padding: 0.3em;
+    border: 0.1em solid black;
+    text-align: center;
+    font-size: 1em;
+}
+
+
+.ranks__player-ranks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.player-ranks__table{
+    border-collapse: collapse;
+}
+
+.player-ranks__table td, th{
+    padding: 0.4em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.player-ranks__table tr{
+    border-bottom: 0.1em solid black;
+}
+
+
+.header{
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 1em;
+    border-bottom: 0.1em solid black;
+    font-size: 1.2em;
+}
+
+.header--color{
+    color: var(--font-color);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.reset-button{
+    margin-right: auto;
+}
+
+.main-content__user-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 629px;
+}
+
+.main-content__game-text{
+    width: 629px;
+    color: grey;
+    background-color: white;
+    padding: 0 0.5em 0 0.5em;
+    border-top-left-radius: 0.1em;
+    border-top-right-radius: 0.1em;
+    margin-top: 0.5em;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.3em;
+    line-height: 1.4;
+}
+
+.user-input__text{
+    padding: 1em 0.55em 1em 0.55em;
+    width: 100%;
+    outline: none;
+    font-size: 1.2em;
+    text-align: center;
+    border: none;
+    border-top: 0.05em solid grey;
+}
+
+.user-input__text--color-red{
+    color: red;
+}
+
+.curr-word{
+    color: blue;
+}
+
+.button{
+    box-sizing: border-box;    
+    background-color: white;
+    font-size: 1em;
+    padding: 1em;
+    outline: none;
+    width: 9em;  
+    margin: 0.3em;
+    text-align: center;
+}
+
+.button:active{
+    transform: scale(1.05);
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.button--black-border{
+    border: 0.1em solid black;
+}
+
+.button--grey-border{
+    border: 0.1em solid gray;
+    opacity: 0.3;
+}
+
+
+.game__loading-animation{
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+.game__loading-animation:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: game__loading-animation 1.2s linear infinite;
+}
+
+@keyframes game__loading-animation{
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
+    }
+}

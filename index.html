@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gravity Typing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script data-require="moment.js@2.14.1" data-semver="2.14.1" src="https://npmcdn.com/moment@2.14.1"></script>
+</head>
+
+<body>
+
+    <div class='main-content'>
+        <header class="header header--color">
+            <h1>Gravity Typing</h1>
+        </header>
+        <div class='main-content__game-content'>
+            <div class='game-content__game-control'>
+                <div class='chose-difficulty'>
+                    <label class='game-control__label' for='select-id'>Difficulty:</label>
+                    <select id='select-id' class='game-control__select'>
+                        <option>Easy</option>
+                        <option selected='selected'>Normal</option>
+                        <option>Hard</option>
+                        <option>Insane</option>
+                    </select>
+                </div>
+                <button type='button' class='button button--black-border reset-button'>Reset</button>
+            </div>
+
+            <div class='game-content__game'>
+
+                <div class='game__loading-animation'></div>
+                <canvas id="canvas" style="width: 650px; height: 300px"></canvas>
+
+                <div class='main-content__game-text'>
+                    <p></p>
+                </div>
+
+                <div class="main-content__user-input">
+                    <input type="text" id="input-text" placeholder="Enter Text Here" class="user-input__text">
+                </div>
+            </div>
+
+            <div class='game-content__ranks'>
+                
+                <div class=ranks__player-name-input>
+                    <input type='text' class='player-name-input__input' placeHolder='Enter Your Name'>
+                    <button type='button' class='submit-score-button button button--black-border'>Submit Score</button>
+                </div>
+
+                <div class='ranks__player-ranks'>
+                    <h3 class='header'>Top 10 Ranks</h3>
+                    <table class='player-ranks__table'>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>WPM</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script defer type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
