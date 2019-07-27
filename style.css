@@ -1,5 +1,6 @@
 :root{
-    --background-color: #15DB95;
+    --background-color: #1A1A1D;
+    /* #15DB95; */
     /* #25274D; */
     /* #e0474c; */
     /* #10E7DC; */
@@ -72,10 +73,12 @@ body{
 .game-content__ranks{
     background-color: white;
     width: 15em;
+    height: 20em;
     font-size: 1.2em;
     margin-left: 2em;
     border: 0.1em solid black;
     padding: 1em;
+
 }
 
 .ranks__player-name-input{

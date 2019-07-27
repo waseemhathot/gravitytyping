@@ -87,7 +87,7 @@ async function loadGame(){
         winImage: new Image()
     }
 
-
+    disableButton(elementsHolder.submitScoreButton);
     displayLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText);
 
     const textRes = await getText(textsUrl).catch(() => {
@@ -187,6 +187,7 @@ function initInputListener(elementsHolder: DomElementsHolder, textHolder: TextHo
                     
                     if((textHolder.textArray.length) === textHolder.wordCtr){
                         gameHolder.gameWon = true;
+                        enableButton(elementsHolder.submitScoreButton);
                     }
                 }
                 else{
@@ -216,6 +217,7 @@ function initSubmitListener(elementsHolder: DomElementsHolder, gameHolder: GameH
                 tableRows[i].remove();
             }
             loadRanks(elementsHolder, ranksUrl);
+            disableButton(elementsHolder.submitScoreButton);
             elementsHolder.resetButton.click();
         }
         else{

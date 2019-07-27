@@ -78,6 +78,7 @@ function loadGame() {
                         gameOverImage: new Image(),
                         winImage: new Image()
                     };
+                    disableButton(elementsHolder.submitScoreButton);
                     displayLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText);
                     return [4 /*yield*/, getText(textsUrl)["catch"](function () {
                             var defaultString = "Computer programming is the process of designing and building an executable computer program for accomplishing a specific computing task. Programming involves tasks such as: analysis, generating algorithms, profiling algorithms' accuracy and resource consumption, and the implementation of algorithms in a chosen programming language (commonly referred to as coding).";
@@ -168,6 +169,7 @@ function initInputListener(elementsHolder, textHolder, gameHolder, spaceKeyCode,
                     elementsHolder.inputText.classList.remove('user-input__text--color-red');
                     if ((textHolder.textArray.length) === textHolder.wordCtr) {
                         gameHolder.gameWon = true;
+                        enableButton(elementsHolder.submitScoreButton);
                     }
                 }
                 else {
@@ -200,6 +202,7 @@ function initSubmitListener(elementsHolder, gameHolder, playerRankUrl, ranksUrl)
                         tableRows[i].remove();
                     }
                     loadRanks(elementsHolder, ranksUrl);
+                    disableButton(elementsHolder.submitScoreButton);
                     elementsHolder.resetButton.click();
                     return [3 /*break*/, 3];
                 case 2:
