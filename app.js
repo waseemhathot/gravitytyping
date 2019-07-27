@@ -135,7 +135,7 @@ function loadRanks(elementsHolder, ranksUrl) {
 }
 function initImages(imageHolder) {
     imageHolder.cvsImage1.src = "images/balloon-icon.png";
-    imageHolder.spikeImage.src = "images/paint-spikes.png";
+    imageHolder.spikeImage.src = "images/spikes-long.png";
     imageHolder.whiteImage.src = "images/White_image.jpg";
     imageHolder.gameOverImage.src = "images/game_over.png";
     imageHolder.winImage.src = "images/win_image_3.png";
@@ -163,7 +163,7 @@ function initInputListener(elementsHolder, textHolder, gameHolder, spaceKeyCode,
                     }
                     updateText(elementsHolder, textHolder);
                     if (gameHolder.rX > 0) {
-                        gameHolder.rX -= 30;
+                        gameHolder.rX -= 25;
                     }
                     this.value = textHolder.input[1];
                     elementsHolder.inputText.classList.remove('user-input__text--color-red');
@@ -247,7 +247,7 @@ function drawCanvas(elementsHolder, textHolder, imageHolder, gameHolder) {
         ctx.drawImage(imageHolder.winImage, 250, 0);
         enableButton(elementsHolder.resetButton);
     }
-    if (gameHolder.rX >= 240 && gameHolder.gameOver === false) {
+    if (gameHolder.rX >= 270 && gameHolder.gameOver === false) {
         gameHolder.gameOver = true;
         ctx.drawImage(imageHolder.gameOverImage, 350, 0);
         enableButton(elementsHolder.resetButton);
