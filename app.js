@@ -115,12 +115,12 @@ function loadRanks(elementsHolder, ranksUrl) {
                 case 0: return [4 /*yield*/, getPlayersRank(ranksUrl)];
                 case 1:
                     playersRankRes = _a.sent();
-                    for (i = 0; i < playersRankRes.length && i < 10; i++) {
+                    for (i = 1; i < playersRankRes.length && i < 11; i++) {
                         playerRow = document.createElement('tr');
                         playerRank = document.createElement('td');
                         playerName = document.createElement('td');
                         playerWpm = document.createElement('td');
-                        playerRank.textContent = '' + (i + 1);
+                        playerRank.textContent = '' + i;
                         playerName.textContent = playersRankRes[i].name;
                         playerWpm.textContent = playersRankRes[i].wpm;
                         elementsHolder.ranksTableElement.appendChild(playerRow);
@@ -229,6 +229,7 @@ function reset(elementsH, textH, imageH, gameH) {
     gameH.rX = 20;
     gameH.rY = 450;
     updateText(elementsH, textH);
+    disableButton(elementsH.submitScoreButton);
     disableButton(elementsH.resetButton);
     drawCanvas(elementsH, textH, imageH, gameH);
 }

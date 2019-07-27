@@ -1,5 +1,5 @@
 :root{
-    --background-color: #CAFAFE;
+    /* --background-color: #CAFAFE; */
     /* #15DB95; */
     /* #25274D; */
     /* #e0474c; */
@@ -12,17 +12,10 @@
 }
 
 html{
-    background-color: var(--background-color);
+    background-color: black;
+    background-image: url('./images/page-background.jpg');
     width: 100%;
     height: 110%;
-    background:
-    radial-gradient(black 15%, transparent 16%) 0 0,
-    radial-gradient(black 15%, transparent 16%) 8px 8px,
-    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-    background-color:#282828;
-    background-size:16px 16px;
-    
 }
 
 body{
