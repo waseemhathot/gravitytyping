@@ -209,6 +209,8 @@ function initResetListner(elementsHolder: DomElementsHolder, textHolder: TextHol
 
 function initSubmitListener(elementsHolder: DomElementsHolder, gameHolder: GameHolder, playerRankUrl: string, ranksUrl: string) {
     elementsHolder.submitScoreButton.addEventListener('click', async () => {
+        
+        disableButton(elementsHolder.submitScoreButton);
         const playerName = elementsHolder.playerNameInput.value;
 
         if (playerName.length > 0 && playerName.length <= 16 && gameHolder.gameWon === true) {
@@ -219,7 +221,6 @@ function initSubmitListener(elementsHolder: DomElementsHolder, gameHolder: GameH
                 tableRows[i].remove();
             }
             loadRanks(elementsHolder, ranksUrl);
-            disableButton(elementsHolder.submitScoreButton);
             elementsHolder.resetButton.click();
         }
         else {
@@ -360,5 +361,5 @@ function removeLoadingAnimation(cvsElement: HTMLCanvasElement, gameTextElement: 
     cvsElement.style.display = 'block';
     gameTextElement.style.display = 'block';
     inputTextElement.style.display = 'block';
-
 }
+

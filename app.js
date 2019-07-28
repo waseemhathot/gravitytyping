@@ -352,3 +352,10 @@ function removeLoadingAnimation(cvsElement, gameTextElement, inputTextElement, l
     gameTextElement.style.display = 'block';
     inputTextElement.style.display = 'block';
 }
+function enter(e) {
+    if (e.keyCode === 13) {
+        console.log('here');
+        var scoreButton = document.querySelector('.submit-score-button');
+        scoreButton.click();
+    }
+}
