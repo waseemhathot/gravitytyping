@@ -216,7 +216,6 @@ function initSubmitListener(elementsHolder: DomElementsHolder, gameHolder: GameH
         if (playerName.length > 0 && playerName.length <= 16 && gameHolder.gameWon === true) {
             await fetch(`${playerRankUrl}/${playerName}/${gameHolder.wpm}`, { method: 'POST' });
             let tableRows = document.querySelectorAll('tr');
-            console.log(tableRows);
             for (let i = 1; i < tableRows.length; i++) {
                 tableRows[i].remove();
             }
