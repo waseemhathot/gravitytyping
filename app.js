@@ -117,7 +117,8 @@ function loadRanks(elementsHolder, ranksUrl) {
                     })];
                 case 1:
                     playersRankRes = _a.sent();
-                    for (i = 1; i < playersRankRes.length && i < 10; i++) {
+                    console.log(playersRankRes);
+                    for (i = 1; i < playersRankRes.length && i <= 10; i++) {
                         playerRow = document.createElement('tr');
                         playerRank = document.createElement('td');
                         playerName = document.createElement('td');

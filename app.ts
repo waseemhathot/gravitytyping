@@ -123,8 +123,8 @@ async function loadRanks(elementsHolder: DomElementsHolder, ranksUrl: string) {
     const playersRankRes: Player[] = await getPlayersRank(ranksUrl).catch((err) => {
         throw new Error('faild to fetch ranks');
     });
-
-    for (let i = 1; i < playersRankRes.length && i < 10; i++) {
+    console.log(playersRankRes);
+    for (let i = 1; i < playersRankRes.length && i <= 10; i++) {
         const playerRow: HTMLElement = document.createElement('tr');
         const playerRank: HTMLElement = document.createElement('td');
         const playerName: HTMLElement = document.createElement('td');
