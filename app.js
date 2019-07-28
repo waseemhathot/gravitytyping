@@ -117,12 +117,12 @@ function loadRanks(elementsHolder, ranksUrl) {
                     })];
                 case 1:
                     playersRankRes = _a.sent();
-                    for (i = 1; i < playersRankRes.length && i < 11; i++) {
+                    for (i = 0; i < playersRankRes.length && i < 9; i++) {
                         playerRow = document.createElement('tr');
                         playerRank = document.createElement('td');
                         playerName = document.createElement('td');
                         playerWpm = document.createElement('td');
-                        playerRank.textContent = '' + i;
+                        playerRank.textContent = '' + (i + 1);
                         playerName.textContent = playersRankRes[i].name;
                         playerWpm.textContent = playersRankRes[i].wpm;
                         elementsHolder.ranksTableElement.appendChild(playerRow);
@@ -193,18 +193,21 @@ function initSubmitListener(elementsHolder, gameHolder, playerRankUrl, ranksUrl)
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    disableButton(elementsHolder.submitScoreButton);
                     playerName = elementsHolder.playerNameInput.value;
                     if (!(playerName.length > 0 && playerName.length <= 16 && gameHolder.gameWon === true)) return [3 /*break*/, 2];
-                    return [4 /*yield*/, fetch(playerRankUrl + "/" + playerName + "/" + gameHolder.wpm, { method: 'POST' })];
+                    return [4 /*yield*/, fetch(playerRankUrl, {
+                            method: 'POST',
+                            body: JSON.stringify({ name: playerName, wpm: gameHolder.wpm }),
+                            headers: { 'Content-type': 'application/json' }
+                        })];
                 case 1:
                     _a.sent();
                     tableRows = document.querySelectorAll('tr');
-                    console.log(tableRows);
                     for (i = 1; i < tableRows.length; i++) {
                         tableRows[i].remove();
                     }
                     loadRanks(elementsHolder, ranksUrl);
-                    disableButton(elementsHolder.submitScoreButton);
                     elementsHolder.resetButton.click();
                     return [3 /*break*/, 3];
                 case 2:
@@ -351,11 +354,4 @@ function removeLoadingAnimation(cvsElement, gameTextElement, inputTextElement, l
     cvsElement.style.display = 'block';
     gameTextElement.style.display = 'block';
     inputTextElement.style.display = 'block';
-}
-function enter(e) {
-    if (e.keyCode === 13) {
-        console.log('here');
-        var scoreButton = document.querySelector('.submit-score-button');
-        scoreButton.click();
-    }
 }

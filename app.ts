@@ -119,19 +119,18 @@ window.onload = () => {
     loadGame();
 }
 
-
 async function loadRanks(elementsHolder: DomElementsHolder, ranksUrl: string) {
     const playersRankRes: Player[] = await getPlayersRank(ranksUrl).catch((err) => {
         throw new Error('faild to fetch ranks');
     });
 
-    for (let i = 1; i < playersRankRes.length && i < 11; i++) {
+    for (let i = 0; i < playersRankRes.length && i < 9; i++) {
         const playerRow: HTMLElement = document.createElement('tr');
         const playerRank: HTMLElement = document.createElement('td');
         const playerName: HTMLElement = document.createElement('td');
         const playerWpm: HTMLElement = document.createElement('td');
 
-        playerRank.textContent = '' + i;
+        playerRank.textContent = '' + (i + 1);
         playerName.textContent = playersRankRes[i].name;
         playerWpm.textContent = playersRankRes[i].wpm;
 
@@ -209,16 +208,17 @@ function initResetListner(elementsHolder: DomElementsHolder, textHolder: TextHol
 
 function initSubmitListener(elementsHolder: DomElementsHolder, gameHolder: GameHolder, playerRankUrl: string, ranksUrl: string) {
     elementsHolder.submitScoreButton.addEventListener('click', async () => {
-        
+
         disableButton(elementsHolder.submitScoreButton);
         const playerName = elementsHolder.playerNameInput.value;
 
         if (playerName.length > 0 && playerName.length <= 16 && gameHolder.gameWon === true) {
-            await fetch(playerRankUrl, { 
+            await fetch(playerRankUrl, {
                 method: 'POST',
-                body: JSON.stringify({name: playerName, wpm: gameHolder.wpm})
+                body: JSON.stringify({ name: playerName, wpm: gameHolder.wpm }),
+                headers: { 'Content-type': 'application/json' }
             });
-            
+
             let tableRows = document.querySelectorAll('tr');
             for (let i = 1; i < tableRows.length; i++) {
                 tableRows[i].remove();
