@@ -121,7 +121,9 @@ window.onload = () => {
 
 
 async function loadRanks(elementsHolder: DomElementsHolder, ranksUrl: string) {
-    const playersRankRes: Player[] = await getPlayersRank(ranksUrl);
+    const playersRankRes: Player[] = await getPlayersRank(ranksUrl).catch((err) => {
+        throw new Error('faild to fetch ranks');
+    });
 
     for (let i = 1; i < playersRankRes.length && i < 11; i++) {
         const playerRow: HTMLElement = document.createElement('tr');

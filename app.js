@@ -112,7 +112,9 @@ function loadRanks(elementsHolder, ranksUrl) {
         var playersRankRes, i, playerRow, playerRank, playerName, playerWpm;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getPlayersRank(ranksUrl)];
+                case 0: return [4 /*yield*/, getPlayersRank(ranksUrl)["catch"](function (err) {
+                        throw new Error('faild to fetch ranks');
+                    })];
                 case 1:
                     playersRankRes = _a.sent();
                     for (i = 1; i < playersRankRes.length && i < 11; i++) {
