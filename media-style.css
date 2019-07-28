@@ -1,34 +1,10 @@
-
-
-
-@media only screen and (min-width: 1400px){
+@media only screen and (max-width: 767px){
   
+    .game-content__game{
+        display: none;
+    }
+    .game-content__game-control{
+        display: none;
+    }
 }
 
-@media only screen and (min-width: 1500px){
-    
-}
-
-@media only screen and (min-width: 1600px){
-   
-}
-
-@media only screen and (min-width: 1700px){
-    
-}
-
-@media only screen and (min-width: 1800px){
-    
-}
-
-@media only screen and (min-width: 1900px){
-   
-}
-
-@media only screen and (min-width: 2000px){
-
-}
-
-@media only screen and (min-width: 2100px){
- 
-}
