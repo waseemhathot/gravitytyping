@@ -124,13 +124,13 @@ async function loadRanks(elementsHolder: DomElementsHolder, ranksUrl: string) {
         throw new Error('faild to fetch ranks');
     });
 
-    for (let i = 0; i < playersRankRes.length && i < 9; i++) {
+    for (let i = 1; i < playersRankRes.length && i < 10; i++) {
         const playerRow: HTMLElement = document.createElement('tr');
         const playerRank: HTMLElement = document.createElement('td');
         const playerName: HTMLElement = document.createElement('td');
         const playerWpm: HTMLElement = document.createElement('td');
 
-        playerRank.textContent = '' + (i + 1);
+        playerRank.textContent = '' + i;
         playerName.textContent = playersRankRes[i].name;
         playerWpm.textContent = playersRankRes[i].wpm;
 

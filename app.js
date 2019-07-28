@@ -117,12 +117,12 @@ function loadRanks(elementsHolder, ranksUrl) {
                     })];
                 case 1:
                     playersRankRes = _a.sent();
-                    for (i = 0; i < playersRankRes.length && i < 9; i++) {
+                    for (i = 1; i < playersRankRes.length && i < 10; i++) {
                         playerRow = document.createElement('tr');
                         playerRank = document.createElement('td');
                         playerName = document.createElement('td');
                         playerWpm = document.createElement('td');
-                        playerRank.textContent = '' + (i + 1);
+                        playerRank.textContent = '' + i;
                         playerName.textContent = playersRankRes[i].name;
                         playerWpm.textContent = playersRankRes[i].wpm;
                         elementsHolder.ranksTableElement.appendChild(playerRow);
