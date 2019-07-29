@@ -95,12 +95,11 @@ body{
 .game-content__ranks{
     background-color: white;
     width: 15em;
-    height: 20em;
+    height: 32em;
     font-size: 1.2em;
     margin-left: 2em;
     border: 0.1em solid black;
     padding: 1em;
-
 }
 
 .ranks__player-name-input{
@@ -221,7 +220,7 @@ body{
     margin: 1px;
     border-radius: 50%;
     border: 5px solid #fff;
-    border-color: #fff transparent #fff transparent;
+    border-color: blue transparent blue transparent;
     animation: game__loading-animation 1.2s linear infinite;
 }
 

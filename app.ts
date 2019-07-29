@@ -12,7 +12,9 @@ type DomElementsHolder = {
     cvs: HTMLCanvasElement,
     difficultySelect: HTMLSelectElement,
     ranksTableElement: HTMLTableElement,
-    playerNameInput: HTMLInputElement
+    playerNameInput: HTMLInputElement,
+    tableAnimationElement: HTMLDivElement,
+    gameAnimationElement: HTMLDivElement
 }
 
 type TextHolder = {
@@ -48,7 +50,6 @@ async function loadGame() {
 
     const spaceKeyCode = 32;
     const backspaceKeyCode = 8;
-    const loadingElement: HTMLElement = document.querySelector('.game__loading-animation');
 
     const elementsHolder: DomElementsHolder = {
         textDiv: document.querySelector('.main-content__game-text p'),
@@ -58,7 +59,9 @@ async function loadGame() {
         cvs: document.querySelector('#canvas'),
         difficultySelect: document.querySelector('.game-control__select'),
         ranksTableElement: document.querySelector('.player-ranks__table tbody'),
-        playerNameInput: document.querySelector('.player-name-input__input')
+        playerNameInput: document.querySelector('.player-name-input__input'),
+        tableAnimationElement: document.querySelector('.table__loading-animation'),
+        gameAnimationElement: document.querySelector('.game__loading-animation')
     }
 
     const textHolder: TextHolder = {
@@ -88,7 +91,7 @@ async function loadGame() {
     }
 
     disableButton(elementsHolder.submitScoreButton);
-    displayLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText);
+    displayLoadingAnimation(elementsHolder);
 
     const textRes = await getText(textsUrl).catch(() => {
         const defaultString: string = `Computer programming is the process of designing and building an executable computer program for accomplishing a specific computing task. Programming involves tasks such as: analysis, generating algorithms, profiling algorithms' accuracy and resource consumption, and the implementation of algorithms in a chosen programming language (commonly referred to as coding).`;
@@ -96,7 +99,7 @@ async function loadGame() {
     });
 
     loadRanks(elementsHolder, ranksUrl);
-    removeLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText, loadingElement);
+    removeLoadingAnimation(elementsHolder);
 
     disableButton(elementsHolder.resetButton);
 
@@ -120,10 +123,16 @@ window.onload = () => {
 }
 
 async function loadRanks(elementsHolder: DomElementsHolder, ranksUrl: string) {
+    elementsHolder.ranksTableElement.style.display = 'none';
+    elementsHolder.tableAnimationElement.style.display = 'block';
+
     const playersRankRes: Player[] = await getPlayersRank(ranksUrl).catch((err) => {
         throw new Error('faild to fetch ranks');
     });
-    console.log(playersRankRes);
+
+    elementsHolder.tableAnimationElement.style.display = 'none';
+    elementsHolder.ranksTableElement.style.display = 'block';
+
     for (let i = 1; i < playersRankRes.length && i <= 10; i++) {
         const playerRow: HTMLElement = document.createElement('tr');
         const playerRank: HTMLElement = document.createElement('td');
@@ -351,18 +360,17 @@ function getDifficulty(elementsHolder: DomElementsHolder): number {
 
 
 
-function displayLoadingAnimation(cvsElement: HTMLCanvasElement, gameTextElement: HTMLElement, inputTextElement: HTMLInputElement) {
-    cvsElement.style.display = 'none';
-    gameTextElement.style.display = 'none';
-    inputTextElement.style.display = 'none';
-
+function displayLoadingAnimation(elementsHolder: DomElementsHolder) {
+    elementsHolder.cvs.style.display = 'none';
+    elementsHolder.textDiv.style.display = 'none';
+    elementsHolder.inputText.style.display = 'none';
+    elementsHolder.gameAnimationElement.style.display = 'block';
 
 }
 
-function removeLoadingAnimation(cvsElement: HTMLCanvasElement, gameTextElement: HTMLElement, inputTextElement: HTMLInputElement, loadingDiv: HTMLElement) {
-    document.querySelector('.game__loading-animation').remove();
-    cvsElement.style.display = 'block';
-    gameTextElement.style.display = 'block';
-    inputTextElement.style.display = 'block';
+function removeLoadingAnimation(elementsHolder: DomElementsHolder) {
+    elementsHolder.gameAnimationElement.style.display = 'none';
+    elementsHolder.cvs.style.display = 'block';
+    elementsHolder.textDiv.style.display = 'block';
+    elementsHolder.inputText.style.display = 'block';
 }
-

@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function loadGame() {
     return __awaiter(this, void 0, void 0, function () {
-        var textsUrl, ranksUrl, playerRankUrl, spaceKeyCode, backspaceKeyCode, loadingElement, elementsHolder, textHolder, gameHolder, imageHolder, textRes;
+        var textsUrl, ranksUrl, playerRankUrl, spaceKeyCode, backspaceKeyCode, elementsHolder, textHolder, gameHolder, imageHolder, textRes;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -44,7 +44,6 @@ function loadGame() {
                     playerRankUrl = 'https://gravity-typing.herokuapp.com/api/player';
                     spaceKeyCode = 32;
                     backspaceKeyCode = 8;
-                    loadingElement = document.querySelector('.game__loading-animation');
                     elementsHolder = {
                         textDiv: document.querySelector('.main-content__game-text p'),
                         inputText: document.querySelector('.user-input__text'),
@@ -53,7 +52,9 @@ function loadGame() {
                         cvs: document.querySelector('#canvas'),
                         difficultySelect: document.querySelector('.game-control__select'),
                         ranksTableElement: document.querySelector('.player-ranks__table tbody'),
-                        playerNameInput: document.querySelector('.player-name-input__input')
+                        playerNameInput: document.querySelector('.player-name-input__input'),
+                        tableAnimationElement: document.querySelector('.table__loading-animation'),
+                        gameAnimationElement: document.querySelector('.game__loading-animation')
                     };
                     textHolder = {
                         wordCtr: 0,
@@ -79,7 +80,7 @@ function loadGame() {
                         winImage: new Image()
                     };
                     disableButton(elementsHolder.submitScoreButton);
-                    displayLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText);
+                    displayLoadingAnimation(elementsHolder);
                     return [4 /*yield*/, getText(textsUrl)["catch"](function () {
                             var defaultString = "Computer programming is the process of designing and building an executable computer program for accomplishing a specific computing task. Programming involves tasks such as: analysis, generating algorithms, profiling algorithms' accuracy and resource consumption, and the implementation of algorithms in a chosen programming language (commonly referred to as coding).";
                             return defaultString;
@@ -87,7 +88,7 @@ function loadGame() {
                 case 1:
                     textRes = _a.sent();
                     loadRanks(elementsHolder, ranksUrl);
-                    removeLoadingAnimation(elementsHolder.cvs, elementsHolder.textDiv, elementsHolder.inputText, loadingElement);
+                    removeLoadingAnimation(elementsHolder);
                     disableButton(elementsHolder.resetButton);
                     initImages(imageHolder);
                     initInputListener(elementsHolder, textHolder, gameHolder, spaceKeyCode, backspaceKeyCode);
@@ -112,12 +113,16 @@ function loadRanks(elementsHolder, ranksUrl) {
         var playersRankRes, i, playerRow, playerRank, playerName, playerWpm;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, getPlayersRank(ranksUrl)["catch"](function (err) {
-                        throw new Error('faild to fetch ranks');
-                    })];
+                case 0:
+                    elementsHolder.ranksTableElement.style.display = 'none';
+                    elementsHolder.tableAnimationElement.style.display = 'block';
+                    return [4 /*yield*/, getPlayersRank(ranksUrl)["catch"](function (err) {
+                            throw new Error('faild to fetch ranks');
+                        })];
                 case 1:
                     playersRankRes = _a.sent();
-                    console.log(playersRankRes);
+                    elementsHolder.tableAnimationElement.style.display = 'none';
+                    elementsHolder.ranksTableElement.style.display = 'block';
                     for (i = 1; i < playersRankRes.length && i <= 10; i++) {
                         playerRow = document.createElement('tr');
                         playerRank = document.createElement('td');
@@ -345,14 +350,15 @@ function getDifficulty(elementsHolder) {
         return 0.68;
     }
 }
-function displayLoadingAnimation(cvsElement, gameTextElement, inputTextElement) {
-    cvsElement.style.display = 'none';
-    gameTextElement.style.display = 'none';
-    inputTextElement.style.display = 'none';
+function displayLoadingAnimation(elementsHolder) {
+    elementsHolder.cvs.style.display = 'none';
+    elementsHolder.textDiv.style.display = 'none';
+    elementsHolder.inputText.style.display = 'none';
+    elementsHolder.gameAnimationElement.style.display = 'block';
 }
-function removeLoadingAnimation(cvsElement, gameTextElement, inputTextElement, loadingDiv) {
-    document.querySelector('.game__loading-animation').remove();
-    cvsElement.style.display = 'block';
-    gameTextElement.style.display = 'block';
-    inputTextElement.style.display = 'block';
+function removeLoadingAnimation(elementsHolder) {
+    elementsHolder.gameAnimationElement.style.display = 'none';
+    elementsHolder.cvs.style.display = 'block';
+    elementsHolder.textDiv.style.display = 'block';
+    elementsHolder.inputText.style.display = 'block';
 }
